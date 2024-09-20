@@ -18,7 +18,6 @@ Below we explain the details of the sparse matrix-vector product kernels.
 * `kernelCRS.F`: CRS-based kernel code in OpenMP/OpenACC
 * `kernelEBE.F`: EBE-based kernel code in OpenACC
 * `kernelEBE_CUDA.cu`: EBE-based kernel code in CUDA
-* `set_CRS.F`: code used for generating CRS-based matrix
 * `Makefile`: Makefile used for building program
 
 ## Compile
@@ -37,13 +36,16 @@ Five executable files will be generated as below
 ```
 
 ## Test data
-Test data can be downloaded from https://www.eri.u-tokyo.ac.jp/cshpc/share/WACCPD2024/data.tar.gz (236 MB) and extracted as `tar xzf data.tar.gz`.
+Test data can be downloaded from https://www.eri.u-tokyo.ac.jp/cshpc/share/WACCPD2024/data.tar.gz (3.6 GB) and extracted as `tar xzf data.tar.gz`.
 Contents of `./data` is as below.
-* `./data/setting.dat`: setting data of finite-element model (number of nodes, number of elements, and number of materials).
+* `./data/setting.dat`: setting data of finite-element model (number of nodes, number of elements, number of materials, number of nonzero CRS components).
 * `./data/material.dat`: material properties of finite-element model.
-* `./data/conn.dat`: connectivity data of finite-element model.
-* `./data/coor.dat`: coordinate data of finite-element model.
-* `./data/num.dat`: material number of each element of finite-element model.
+* `./data/conn.bin`: connectivity data of finite-element model.
+* `./data/coor.bin`: coordinate data of finite-element model.
+* `./data/num.bin`: material number of each element of finite-element model.
+* `./data/crsptr.bin`: pointer array for matrix in CRS format.
+* `./data/crsind.bin`: index array for matrix in CRS format.
+* `./data/crsval.bin`: value array for matrix in CRS format.
 
 ## Run
 Kernels programs can be run as below.
